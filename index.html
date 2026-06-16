@@ -4,49 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دعوة زفاف محمود ولقاء</title>
-    <!-- استدعاء مشغل Spline للـ 3D -->
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; background: #1a1a1a; }
+        body { margin: 0; padding: 0; font-family: 'Amiri', serif; background: #0f0f0f; color: #fff; overflow: hidden; }
         
-        /* تصميم الطبقة اللي فوق الـ 3D */
-        .content {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: #f8f8f8; text-align: center; z-index: 10; pointer-events: none;
-            background: rgba(0,0,0,0.3); /* تغميق خفيف عشان الكلام يبان */
+        /* شاشة الظرف */
+        #envelope-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #d4af37; display: flex; justify-content: center; align-items: center;
+            z-index: 100; cursor: pointer; transition: 0.8s;
         }
+
+        /* الدعوة */
+        #invitation-content { display: none; text-align: center; padding: 20px; }
         
-        h1 { font-size: 3.5rem; margin-bottom: 10px; color: #d4af37; } /* لون ذهبي */
-        h2 { font-size: 1.5rem; margin: 5px 0; }
-        .details { margin-top: 20px; font-size: 1.2rem; line-height: 1.8; }
-        
-        .btn {
-            pointer-events: auto; padding: 15px 40px; background: #d4af37; color: white;
-            text-decoration: none; border-radius: 50px; font-size: 1.2rem; margin-top: 30px;
-            transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-        .btn:hover { background: #b8962d; transform: scale(1.05); }
+        /* التايمر */
+        .timer { display: flex; justify-content: center; gap: 15px; font-size: 1.5rem; margin: 20px 0; }
+        .btn { display: inline-block; padding: 15px 30px; background: #d4af37; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <!-- مشهد الـ 3D (يمكنك استبدال الرابط بأي مشهد آخر من Spline) -->
-    <spline-viewer url="https://prod.spline.design/i92r79aP5wX8aYqZ/scene.splinecode"></spline-viewer>
-
-    <!-- بيانات الفرح -->
-    <div class="content">
-        <h1>محمود & لقاء</h1>
-        <h2>نتشرف بدعوتكم لحضور حفل زفافنا</h2>
-        
-        <div class="details">
-            <p>📅 التاريخ: 20 يونيو 2026</p>
-            <p>📍 المكان: قاعة الماسة - قلين</p>
-            <p>🕗 الساعة: 8:00 مساءً</p>
-        </div>
-
-        <a href="https://wa.me/201000000000" class="btn">تأكيد الحضور (واتساب)</a>
+    <div id="envelope-screen" onclick="openEnvelope()">
+        <h1 style="font-size: 3rem;">✉️ اضغط لفتح الدعوة</h1>
     </div>
 
+    <div id="invitation-content">
+        <spline-viewer url="https://prod.spline.design/i92r79aP5wX8aYqZ/scene.splinecode"></spline-viewer>
+        <h1>محمود & لقاء</h1>
+        <p>ننتظركم لمشاركتنا فرحة العمر</p>
+        
+        <div class="timer" id="timer"></div>
+        
+        <p>📅 20 يونيو 2026 | 🕗 8:00 مساءً</p>
+        <p>📍 قاعة الماسة - قلين</p>
+        <a href="https://maps.app.goo.gl/رابط-الموقع-الخاص-بك" class="btn">عرض الموقع (Google Maps)</a>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="your-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function openEnvelope() {
+            document.getElementById('envelope-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('envelope-screen').style.display = 'none';
+                document.getElementById('invitation-content').style.display = 'block';
+                document.getElementById('bg-music').play();
+            }, 800);
+        }
+
+        // التايمر
+        const weddingDate = new Date("June 20, 2026 20:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("timer").innerHTML = `<div>${days} يوم</div>`;
+        }, 1000);
+    </script>
 </body>
 </html>
