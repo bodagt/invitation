@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<style>
-    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+    <meta charset="UTF-8">
+    <style>
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f9f6f0; margin: 0; font-family: 'Cairo', sans-serif; }
 
-    /* حاوية الظرف */
-    .envelope-wrapper { position: relative; cursor: pointer; }
+        .invitation-wrapper { position: relative; width: 400px; cursor: pointer; }
 
-    .envelope { width: 300px; height: 200px; background: #dcdcdc; position: relative; z-index: 2; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+        .card {
+            background: white; padding: 40px; border-radius: 20px;
+            text-align: center; border: 2px solid #d4af37;
+            position: absolute; top: 0; width: 320px; margin-right: 20px;
+            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-    /* غطاء الظرف */
-    .flap { position: absolute; top: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 100px solid #c0c0c0; transition: transform 0.6s; transform-origin: top; z-index: 3; }
+        .envelope { width: 400px; height: 250px; background: #dcdcdc; position: relative; z-index: 2; border-radius: 0 0 10px 10px; }
+        .flap { 
+            position: absolute; top: 0; width: 0; height: 0; 
+            border-left: 200px solid transparent; border-right: 200px solid transparent; 
+            border-top: 130px solid #c0c0c0; transition: transform 0.8s; transform-origin: top; z-index: 3;
+        }
 
-    /* الكارت داخل الظرف */
-    .card { position: absolute; top: 10px; left: 10px; width: 280px; height: 180px; background: white; transition: transform 1s ease-in-out; z-index: 1; display: flex; justify-content: center; align-items: center; text-align: center; border: 1px solid #ccc; }
-
-    /* عند الضغط أو التمرير يفتح الظرف ويخرج الكارت */
-    .envelope-wrapper:hover .flap { transform: rotateX(180deg); }
-    .envelope-wrapper:hover .card { transform: translateY(-150px); }
-</style>
+        .invitation-wrapper.open .flap { transform: rotateX(180deg); }
+        .invitation-wrapper.open .card { transform: translateY(-200px); }
+        
+        h2 { color: #d4af37; margin: 0; }
+        .names { font-size: 1.8rem; font-weight: bold; color: #2c3e50; margin: 15px 0; }
+    </style>
 </head>
 <body>
 
-<div class="envelope-wrapper">
+<div class="invitation-wrapper" onclick="this.classList.toggle('open')">
     <div class="flap"></div>
-    <div class="card">
-        <div>
-            <h2>دعوة زفاف</h2>
-            <p>يسعدنا تشريفكم لنا</p>
-        </div>
-    </div>
     <div class="envelope"></div>
+    
+    <div class="card">
+        <h2>دعوة زفاف</h2>
+        <div class="names">محمود ❤️ لقاء</div>
+        <p>يسعدنا تشريفكم لنا في حفل زفافنا</p>
+        <p><strong>التاريخ:</strong> 20 يونيو 2026</p>
+        <p><strong>التوقيت:</strong> 8:00 مساءً</p>
+        <p><strong>المكان:</strong> قاعة الماسة - قلين</p>
+        <p>بانتظاركم لتكتمل فرحتنا</p>
+    </div>
 </div>
 
 </body>
