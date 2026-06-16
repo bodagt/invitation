@@ -1,45 +1,39 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            background-color: #fdfaf7; /* لون ورق قديم خفيف */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        /* شاشة البداية (الظرف) */
+        #opening-screen {
+            position: fixed; inset: 0; background: #fdfaf7;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; transition: opacity 1s ease-out; cursor: pointer;
         }
 
-        /* الإطار الزهري (يمكن استبدال الصورة بصورة watercolor حقيقية) */
-        .invitation-card {
-            width: 400px;
-            padding: 50px;
-            text-align: center;
-            border: 2px solid #e0d0d0;
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* تأثير نسيج الورق */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        /* تأثير الكتابة على الظرف */
+        .envelope-text { font-family: 'Amiri', serif; font-size: 2rem; color: #8e7a82; border-bottom: 2px solid #d4c1c1; padding-bottom: 10px; }
 
-        h1 { font-family: 'Playfair Display', serif; color: #5c4b51; font-size: 2.5rem; margin: 20px 0; }
-        .details { font-family: 'Amiri', serif; color: #7a6a70; line-height: 2; font-size: 1.2rem; }
+        /* الأنيميشن لما يختفي */
+        .fade-out { opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body>
 
-    <div class="invitation-card">
-        <!-- هنا يوضع إطار الزهور مثل image_de6439.png -->
-        <div style="border: 1px solid #f4cce2; padding: 30px;">
-            <p>يسعدنا دعوتكم لمشاركتنا الفرحة</p>
-            <h1>محمود & لقاء</h1>
-            <div class="details">
-                <p>يوم 20 يونيو 2026</p>
-                <p>قاعة الماسة - قلين</p>
-                <p>الساعة 8:00 مساءً</p>
-            </div>
-        </div>
+    <!-- شاشة الظرف -->
+    <div id="opening-screen" onclick="startExperience()">
+        <div class="envelope-text">اضغط هنا لفتح دعوة زفاف محمود ولقاء</div>
     </div>
 
+    <!-- هنا مكان كود الدعوة (الذي صممناه سابقاً) -->
+
+    <script>
+        function startExperience() {
+            const screen = document.getElementById('opening-screen');
+            screen.classList.add('fade-out');
+            
+            // تشغيل الموسيقى والأنشودة
+            const audio = new Audio('your-nasheed.mp3');
+            audio.play();
+        }
+    </script>
 </body>
 </html>
