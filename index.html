@@ -1,141 +1,156 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>محمود ♥ لقاء</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف غالية</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Reem_Kufi:wght@500;700&display=swap');
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f6f0;
+            color: #4a4a4a;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-<style>
-body{
-margin:0;
-font-family:'Cairo',sans-serif;
-background: radial-gradient(circle,#1a1a1a,#000);
-color:white;
-text-align:center;
-overflow-x:hidden;
-}
+        .card {
+            background-color: #ffffff;
+            max-width: 500px;
+            width: 90%;
+            margin: 20px;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 2px solid #e8dfd8;
+            position: relative;
+        }
 
-/* خلفية ذهبية متحركة */
-.gold-bg{
-position:fixed;
-width:100%;
-height:100%;
-background: url('https://i.imgur.com/3ZQ3Z9M.png');
-opacity:0.08;
-animation: move 20s linear infinite;
-}
+        /* إطار للتزيين */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 10px; bottom: 10px; left: 10px; right: 10px;
+            border: 1px solid #d4af37; /* لون ذهبي */
+            border-radius: 15px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
 
-@keyframes move{
-from{transform:translateY(0);}
-to{transform:translateY(-1000px);}
-}
+        .header-title {
+            font-family: 'Reem Kufi', serif;
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
 
-.container{
-position:relative;
-padding:60px 20px;
-}
+        .bismillah {
+            font-size: 1.1rem;
+            color: #8c8c8c;
+            margin-bottom: 30px;
+        }
 
-.title{
-font-size:60px;
-color:#d4af37;
-margin-bottom:10px;
-animation: fadeIn 2s ease;
-}
+        .names {
+            font-family: 'Reem Kufi', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin: 20px 0;
+            font-weight: bold;
+        }
 
-.sub{
-font-size:20px;
-color:#ccc;
-margin-bottom:30px;
-}
+        .heart {
+            color: #e74c3c;
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
 
-.card{
-background:rgba(255,255,255,0.05);
-border:1px solid #d4af37;
-max-width:600px;
-margin:20px auto;
-padding:20px;
-border-radius:20px;
-backdrop-filter: blur(10px);
-}
+        .details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 30px 0;
+            color: #555;
+        }
 
-.countdown{
-font-size:28px;
-color:#d4af37;
-margin-top:10px;
-}
+        .info-box {
+            background-color: #fdfbf7;
+            border: 1px dashed #d4af37;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
 
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#d4af37;
-color:black;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-}
+        .info-item {
+            margin: 10px 0;
+            font-weight: bold;
+        }
 
-.btn:hover{
-background:white;
-}
+        .btn-location {
+            display: inline-block;
+            background-color: #d4af37;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
 
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
-}
-</style>
+        .btn-location:hover {
+            background-color: #b8952e;
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="gold-bg"></div>
+    <div class="card">
+        <div class="header-title">دعوة زفاف</div>
+        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        
+        <p>وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
 
-<div class="container">
+        <!-- أسماء العرسان -->
+        <div class="names">
+            أحمد <span class="heart">❤</span> سارة
+        </div>
 
-<h1 class="title">محمود ♥ لقاء</h1>
-<p class="sub">يسرنا دعوتكم لحضور حفل زفافنا المبارك</p>
+        <div class="details">
+            يسعدنا ويشرفنا دعوتكم لحضور حفل زفافنا، وتكتمل فرحتنا بوجودكم ومشاركتكم لنا أجمل لحظات العمر.
+        </div>
 
-<div class="card">
-<h2>📅 التاريخ</h2>
-<p>20 / 6 / 2026</p>
-</div>
+        <!-- تفاصيل الفرح -->
+        <div class="info-box">
+            <div class="info-item">📅 التاريخ: الخميس، 15 أكتوبر 2026</div>
+            <div class="info-item">⏰ الساعة: 8:00 مساءً</div>
+            <div class="info-item">📍 المكان: قاعة الملكة - القاهرة</div>
+        </div>
 
-<div class="card">
-<h2>📍 المكان</h2>
-<p>قاعة أفراح - قلين</p>
-</div>
+        <!-- زرار اللوكيشن -->
+        <a href="https://maps.google.com" target="_blank" class="btn-location">📍 موقع القاعة على الخريطة</a>
 
-<div class="card">
-<h2>⏳ العد التنازلي</h2>
-<div class="countdown" id="countdown"></div>
-</div>
-
-<a class="btn" 
-href="https://wa.me/?text=أؤكد%20حضوري%20لفرح%20محمود%20و%20لقاء%20💍" 
-target="_blank">
-تأكيد الحضور واتساب
-</a>
-
-</div>
-
-<script>
-const weddingDate = new Date("2026-06-20T20:00:00").getTime();
-
-setInterval(()=>{
-let now = new Date().getTime();
-let diff = weddingDate - now;
-
-let days = Math.floor(diff/(1000*60*60*24));
-let hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-let mins = Math.floor((diff%(1000*60*60))/(1000*60));
-let secs = Math.floor((diff%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML =
-days+" يوم - "+hours+" ساعة - "+mins+" دقيقة - "+secs+" ثانية";
-},1000);
-</script>
+        <div class="footer-text">
+            العاقبة لديكم بالمسرات دائماً وأبداً ✨
+        </div>
+    </div>
 
 </body>
 </html>
