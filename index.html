@@ -1,36 +1,37 @@
-.envelope {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  background: #dcdcdc; /* لون الظرف */
-}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
 
-.card {
-  position: absolute;
-  top: 0;
-  left: 10px;
-  width: 280px;
-  height: 180px;
-  background: white;
-  transition: transform 1s ease-in-out;
-}
+    /* حاوية الظرف */
+    .envelope-wrapper { position: relative; cursor: pointer; }
 
-/* حركة خروج الكارت عند تمرير الفأرة أو تحميل الصفحة */
-.envelope:hover .card {
-  transform: translateY(-150px);
-}
+    .envelope { width: 300px; height: 200px; background: #dcdcdc; position: relative; z-index: 2; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
 
-.flap {
-  position: absolute;
-  top: 0;
-  width: 0;
-  height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-top: 100px solid #c0c0c0; /* غطاء الظرف */
-  transition: transform 0.5s;
-}
+    /* غطاء الظرف */
+    .flap { position: absolute; top: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 100px solid #c0c0c0; transition: transform 0.6s; transform-origin: top; z-index: 3; }
 
-.envelope:hover .flap {
-  transform: rotateX(180deg);
-}
+    /* الكارت داخل الظرف */
+    .card { position: absolute; top: 10px; left: 10px; width: 280px; height: 180px; background: white; transition: transform 1s ease-in-out; z-index: 1; display: flex; justify-content: center; align-items: center; text-align: center; border: 1px solid #ccc; }
+
+    /* عند الضغط أو التمرير يفتح الظرف ويخرج الكارت */
+    .envelope-wrapper:hover .flap { transform: rotateX(180deg); }
+    .envelope-wrapper:hover .card { transform: translateY(-150px); }
+</style>
+</head>
+<body>
+
+<div class="envelope-wrapper">
+    <div class="flap"></div>
+    <div class="card">
+        <div>
+            <h2>دعوة زفاف</h2>
+            <p>يسعدنا تشريفكم لنا</p>
+        </div>
+    </div>
+    <div class="envelope"></div>
+</div>
+
+</body>
+</html>
