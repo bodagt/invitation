@@ -1,1 +1,52 @@
-NONE
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف محمود ولقاء</title>
+    <!-- استدعاء مشغل Spline للـ 3D -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; background: #1a1a1a; }
+        
+        /* تصميم الطبقة اللي فوق الـ 3D */
+        .content {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: #f8f8f8; text-align: center; z-index: 10; pointer-events: none;
+            background: rgba(0,0,0,0.3); /* تغميق خفيف عشان الكلام يبان */
+        }
+        
+        h1 { font-size: 3.5rem; margin-bottom: 10px; color: #d4af37; } /* لون ذهبي */
+        h2 { font-size: 1.5rem; margin: 5px 0; }
+        .details { margin-top: 20px; font-size: 1.2rem; line-height: 1.8; }
+        
+        .btn {
+            pointer-events: auto; padding: 15px 40px; background: #d4af37; color: white;
+            text-decoration: none; border-radius: 50px; font-size: 1.2rem; margin-top: 30px;
+            transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        .btn:hover { background: #b8962d; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <!-- مشهد الـ 3D (يمكنك استبدال الرابط بأي مشهد آخر من Spline) -->
+    <spline-viewer url="https://prod.spline.design/i92r79aP5wX8aYqZ/scene.splinecode"></spline-viewer>
+
+    <!-- بيانات الفرح -->
+    <div class="content">
+        <h1>محمود & لقاء</h1>
+        <h2>نتشرف بدعوتكم لحضور حفل زفافنا</h2>
+        
+        <div class="details">
+            <p>📅 التاريخ: 20 يونيو 2026</p>
+            <p>📍 المكان: قاعة الماسة - قلين</p>
+            <p>🕗 الساعة: 8:00 مساءً</p>
+        </div>
+
+        <a href="https://wa.me/201000000000" class="btn">تأكيد الحضور (واتساب)</a>
+    </div>
+
+</body>
+</html>
