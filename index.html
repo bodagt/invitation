@@ -1,67 +1,59 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; background-color: #f7f2ef; font-family: 'Amiri', serif; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
-
-        /* الظرف (مركز الشاشة بتصميم أنيق) */
-        #envelope-wrapper {
-            position: absolute; z-index: 20; transition: all 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            text-align: center; cursor: pointer;
-        }
-
-        /* الكارت (الدعوة بعد الفتح) */
+        body { margin: 0; background: #fdfaf7; font-family: 'Amiri', serif; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; }
+        
+        /* الظرف */
+        #envelope-wrapper { position: absolute; z-index: 20; transition: all 1.2s ease; cursor: pointer; text-align: center; }
+        
+        /* كارت الدعوة */
         #invitation-card {
-            width: 380px; padding: 50px; background: #ffffff;
-            border: 1px solid #d4c1c1; border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            opacity: 0; transition: opacity 1.5s ease; text-align: center;
+            width: 380px; padding: 40px; background: #fff; border: 1px solid #d4c1c1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); opacity: 0; transition: opacity 1.5s;
+            text-align: center; border-radius: 5px;
         }
 
+        .quran-verse { font-size: 0.95rem; color: #7a6a70; font-style: italic; margin-bottom: 25px; line-height: 1.8; }
+        .timer { font-size: 1.4rem; color: #5c4b51; margin: 15px 0; font-weight: bold; }
+        .map-btn { display: inline-block; padding: 10px 25px; background: #c5a059; color: white; text-decoration: none; border-radius: 3px; font-size: 1rem; }
+        
         .flower { position: absolute; animation: fall linear infinite; pointer-events: none; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <!-- الظرف -->
     <div id="envelope-wrapper" onclick="reveal()">
         <div style="font-size: 5rem;">✉️</div>
-        <p style="color: #8e7a82; font-size: 1.2rem;">اضغط لفتح الدعوة</p>
+        <p style="color: #8e7a82;">اضغط لفتح الدعوة</p>
     </div>
 
-    <!-- الكارت -->
     <div id="invitation-card">
+        <div class="quran-verse">
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ <br>
+            "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
+        </div>
+        
         <h2 style="color: #5c4b51;">محمود & لقاء</h2>
-        <p style="color: #8e7a82; line-height: 2;">يتشرف العروسان بدعوتكم لمشاركتهم فرحة العمر</p>
-        <hr style="width: 50%; border: 0; border-top: 1px solid #d4c1c1;">
+        <div class="timer" id="timer">...</div>
         <p>20 يونيو 2026 | 8:00 مساءً</p>
         <p>قاعة الماسة - قلين</p>
+        <a href="https://maps.app.goo.gl/..." class="map-btn">عرض الموقع</a>
     </div>
 
     <script>
         function reveal() {
             document.getElementById('envelope-wrapper').style.opacity = '0';
-            document.getElementById('envelope-wrapper').style.transform = 'scale(2) rotate(10deg)';
             setTimeout(() => {
                 document.getElementById('invitation-card').style.opacity = '1';
                 startFlowers();
             }, 1000);
         }
 
-        function startFlowers() {
-            setInterval(() => {
-                const f = document.createElement('div');
-                f.className = 'flower';
-                f.innerHTML = '🌸';
-                f.style.left = Math.random() * 100 + 'vw';
-                f.style.fontSize = Math.random() * 20 + 15 + 'px';
-                f.style.animationDuration = Math.random() * 5 + 5 + 's';
-                document.body.appendChild(f);
-                setTimeout(() => f.remove(), 8000);
-            }, 400);
-        }
-    </script>
-</body>
-</html>
+        // التايمر
+        const weddingDate = new Date("June 20, 2026 20:00:00").getTime();
+        setInterval(() => {
+            const diff = weddingDate - new Date().getTime();
+            const days = Math.floor
