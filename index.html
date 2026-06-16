@@ -1,67 +1,62 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف محمود ولقاء</title>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; font-family: 'Amiri', serif; background: #0f0f0f; color: #fff; overflow: hidden; }
+        body { margin: 0; font-family: 'Amiri', serif; background: #1a1a1a; color: #d4af37; text-align: center; }
         
-        /* شاشة الظرف */
-        #envelope-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #d4af37; display: flex; justify-content: center; align-items: center;
-            z-index: 100; cursor: pointer; transition: 0.8s;
+        /* الظرف (Envelope) */
+        #envelope {
+            position: fixed; inset: 0; background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 999; transition: opacity 1.5s ease; cursor: pointer;
         }
 
         /* الدعوة */
-        #invitation-content { display: none; text-align: center; padding: 20px; }
+        .card { max-width: 500px; margin: auto; padding: 40px; background: rgba(255,255,255,0.05); border: 1px solid #d4af37; border-radius: 20px; }
         
         /* التايمر */
-        .timer { display: flex; justify-content: center; gap: 15px; font-size: 1.5rem; margin: 20px 0; }
-        .btn { display: inline-block; padding: 15px 30px; background: #d4af37; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+        .timer { font-size: 2rem; margin: 20px 0; color: #fff; }
+        
+        .map-btn { display: inline-block; padding: 12px 30px; background: #d4af37; color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div id="envelope-screen" onclick="openEnvelope()">
-        <h1 style="font-size: 3rem;">✉️ اضغط لفتح الدعوة</h1>
+    <div id="envelope" onclick="openInvitation()">
+        <h2 style="font-size: 2.5rem;">بكل فخر ندعوكم</h2>
+        <p style="font-size: 1.5rem;">اضغط هنا لفتح الدعوة</p>
     </div>
 
-    <div id="invitation-content">
-        <spline-viewer url="https://prod.spline.design/i92r79aP5wX8aYqZ/scene.splinecode"></spline-viewer>
-        <h1>محمود & لقاء</h1>
-        <p>ننتظركم لمشاركتنا فرحة العمر</p>
-        
-        <div class="timer" id="timer"></div>
-        
-        <p>📅 20 يونيو 2026 | 🕗 8:00 مساءً</p>
-        <p>📍 قاعة الماسة - قلين</p>
-        <a href="https://maps.app.goo.gl/رابط-الموقع-الخاص-بك" class="btn">عرض الموقع (Google Maps)</a>
+    <div id="invitation" style="display: none; padding-top: 50px;">
+        <div class="card">
+            <h1 style="font-size: 3rem;">محمود & لقاء</h1>
+            <p>يتشرف العروسان بدعوتكم لمشاركتهم فرحة العمر</p>
+            <div class="timer" id="timer">...</div>
+            <p style="font-size: 1.3rem;">📅 20 يونيو 2026</p>
+            <p style="font-size: 1.3rem;">📍 قاعة الماسة - قلين</p>
+            <br>
+            <a href="https://maps.app.goo.gl/..." class="map-btn">تحديد الموقع على الخريطة</a>
+        </div>
     </div>
 
-    <audio id="bg-music" loop>
-        <source src="your-song.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="audio" src="music.mp3"></audio>
 
     <script>
-        function openEnvelope() {
-            document.getElementById('envelope-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('envelope-screen').style.display = 'none';
-                document.getElementById('invitation-content').style.display = 'block';
-                document.getElementById('bg-music').play();
-            }, 800);
+        function openInvitation() {
+            document.getElementById('envelope').style.opacity = '0';
+            setTimeout(() => { document.getElementById('envelope').style.display = 'none'; }, 1500);
+            document.getElementById('invitation').style.display = 'block';
+            document.getElementById('audio').play();
         }
 
-        // التايمر
+        // التايمر (فاضل 4 أيام)
         const weddingDate = new Date("June 20, 2026 20:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = weddingDate - now;
+            const diff = weddingDate - new Date().getTime();
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("timer").innerHTML = `<div>${days} يوم</div>`;
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("timer").innerHTML = `${days} يوم و ${hours} ساعة`;
         }, 1000);
     </script>
 </body>
