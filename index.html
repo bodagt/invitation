@@ -1,50 +1,39 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f9f6f0; margin: 0; font-family: 'Cairo', sans-serif; }
+import React from 'react';
+import Spline from '@splinetool/react-spline';
 
-        .invitation-wrapper { position: relative; width: 400px; cursor: pointer; }
+function WeddingInvitation() {
+  return (
+    <div style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden' }}>
+      
+      {/* مشهد الـ 3D في الخلفية */}
+      <Spline scene="https://prod.spline.design/رابط-المشهد-الخاص-بك/scene.splinecode" />
 
-        .card {
-            background: white; padding: 40px; border-radius: 20px;
-            text-align: center; border: 2px solid #d4af37;
-            position: absolute; top: 0; width: 320px; margin-right: 20px;
-            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .envelope { width: 400px; height: 250px; background: #dcdcdc; position: relative; z-index: 2; border-radius: 0 0 10px 10px; }
-        .flap { 
-            position: absolute; top: 0; width: 0; height: 0; 
-            border-left: 200px solid transparent; border-right: 200px solid transparent; 
-            border-top: 130px solid #c0c0c0; transition: transform 0.8s; transform-origin: top; z-index: 3;
-        }
-
-        .invitation-wrapper.open .flap { transform: rotateX(180deg); }
-        .invitation-wrapper.open .card { transform: translateY(-200px); }
-        
-        h2 { color: #d4af37; margin: 0; }
-        .names { font-size: 1.8rem; font-weight: bold; color: #2c3e50; margin: 15px 0; }
-    </style>
-</head>
-<body>
-
-<div class="invitation-wrapper" onclick="this.classList.toggle('open')">
-    <div class="flap"></div>
-    <div class="envelope"></div>
-    
-    <div class="card">
-        <h2>دعوة زفاف</h2>
-        <div class="names">محمود ❤️ لقاء</div>
-        <p>يسعدنا تشريفكم لنا في حفل زفافنا</p>
-        <p><strong>التاريخ:</strong> 20 يونيو 2026</p>
-        <p><strong>التوقيت:</strong> 8:00 مساءً</p>
-        <p><strong>المكان:</strong> قاعة الماسة - قلين</p>
-        <p>بانتظاركم لتكتمل فرحتنا</p>
+      {/* المحتوى فوق الـ 3D */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center',
+        color: 'white',
+        textShadow: '2px 2px 10px rgba(0,0,0,0.5)'
+      }}>
+        <h1>أحمد & سارة</h1>
+        <p>يسعدنا دعوتكم لمشاركتنا فرحة العمر</p>
+        <button style={{
+          padding: '15px 30px',
+          fontSize: '18px',
+          borderRadius: '25px',
+          border: 'none',
+          cursor: 'pointer',
+          background: '#C5A059',
+          color: 'white'
+        }}>
+          تأكيد الحضور
+        </button>
+      </div>
     </div>
-</div>
+  );
+}
 
-</body>
-</html>
+export default WeddingInvitation;
