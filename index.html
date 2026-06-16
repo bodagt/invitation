@@ -1,59 +1,294 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        body { margin: 0; background: #fdfaf7; font-family: 'Amiri', serif; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; }
-        
-        /* الظرف */
-        #envelope-wrapper { position: absolute; z-index: 20; transition: all 1.2s ease; cursor: pointer; text-align: center; }
-        
-        /* كارت الدعوة */
-        #invitation-card {
-            width: 380px; padding: 40px; background: #fff; border: 1px solid #d4c1c1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); opacity: 0; transition: opacity 1.5s;
-            text-align: center; border-radius: 5px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .quran-verse { font-size: 0.95rem; color: #7a6a70; font-style: italic; margin-bottom: 25px; line-height: 1.8; }
-        .timer { font-size: 1.4rem; color: #5c4b51; margin: 15px 0; font-weight: bold; }
-        .map-btn { display: inline-block; padding: 10px 25px; background: #c5a059; color: white; text-decoration: none; border-radius: 3px; font-size: 1rem; }
-        
-        .flower { position: absolute; animation: fall linear infinite; pointer-events: none; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
-    </style>
+<title>دعوة زفاف محمود و لقاء</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+background:linear-gradient(to bottom,#fffdf7,#f9f2df);
+overflow-x:hidden;
+color:#5a4720;
+text-align:center;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+position:relative;
+}
+
+.basmala{
+font-size:28px;
+color:#b88b2a;
+margin-bottom:20px;
+}
+
+.verse{
+max-width:700px;
+font-size:22px;
+margin-bottom:40px;
+}
+
+.names{
+font-size:70px;
+font-weight:700;
+color:#c99b35;
+text-shadow:0 0 20px rgba(201,155,53,.3);
+opacity:0;
+animation:cinematic 2.5s forwards;
+}
+
+.and{
+font-size:40px;
+margin:10px 0;
+}
+
+.info{
+margin-top:40px;
+font-size:24px;
+line-height:2;
+}
+
+.countdown{
+display:flex;
+gap:15px;
+margin-top:40px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.box{
+background:white;
+width:110px;
+height:110px;
+border-radius:50%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.box span:first-child{
+font-size:32px;
+font-weight:bold;
+color:#b88b2a;
+}
+
+.btn{
+margin-top:35px;
+padding:16px 35px;
+background:linear-gradient(45deg,#d4af37,#f5d77a);
+color:white;
+border:none;
+border-radius:40px;
+font-size:20px;
+cursor:pointer;
+text-decoration:none;
+display:inline-block;
+}
+
+.music-btn{
+background:white;
+color:#b88b2a;
+border:2px solid #d4af37;
+}
+
+@keyframes cinematic{
+0%{
+opacity:0;
+transform:translateY(80px) scale(.8);
+}
+100%{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+.petal{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear infinite;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-50px) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+@media(max-width:768px){
+
+.names{
+font-size:48px;
+}
+
+.verse{
+font-size:18px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <div id="envelope-wrapper" onclick="reveal()">
-        <div style="font-size: 5rem;">✉️</div>
-        <p style="color: #8e7a82;">اضغط لفتح الدعوة</p>
-    </div>
+<div class="hero">
 
-    <div id="invitation-card">
-        <div class="quran-verse">
-            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ <br>
-            "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
-        </div>
-        
-        <h2 style="color: #5c4b51;">محمود & لقاء</h2>
-        <div class="timer" id="timer">...</div>
-        <p>20 يونيو 2026 | 8:00 مساءً</p>
-        <p>قاعة الماسة - قلين</p>
-        <a href="https://maps.app.goo.gl/..." class="map-btn">عرض الموقع</a>
-    </div>
+<div class="basmala">
+بسم الله الرحمن الرحيم
+</div>
 
-    <script>
-        function reveal() {
-            document.getElementById('envelope-wrapper').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('invitation-card').style.opacity = '1';
-                startFlowers();
-            }, 1000);
-        }
+<div class="verse">
+﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا ﴾
+</div>
 
-        // التايمر
-        const weddingDate = new Date("June 20, 2026 20:00:00").getTime();
-        setInterval(() => {
-            const diff = weddingDate - new Date().getTime();
-            const days = Math.floor
+<div class="names">
+محمود
+</div>
+
+<div class="and">&</div>
+
+<div class="names">
+لقاء
+</div>
+
+<div class="info">
+يسرنا دعوتكم لمشاركتنا فرحتنا<br>
+وحضور حفل زفافنا<br><br>
+
+📅 السبت 20 يونيو 2026<br>
+📍 قاعة الماسة - قلين
+</div>
+
+<div class="countdown">
+
+<div class="box">
+<span id="days">0</span>
+<span>يوم</span>
+</div>
+
+<div class="box">
+<span id="hours">0</span>
+<span>ساعة</span>
+</div>
+
+<div class="box">
+<span id="minutes">0</span>
+<span>دقيقة</span>
+</div>
+
+<div class="box">
+<span id="seconds">0</span>
+<span>ثانية</span>
+</div>
+
+</div>
+
+<a class="btn"
+href="https://maps.google.com"
+target="_blank">
+عرض موقع القاعة
+</a>
+
+<br>
+
+<button class="btn music-btn"
+onclick="toggleMusic()">
+🎵 تشغيل / إيقاف الأنشودة
+</button>
+
+<audio id="audio" loop>
+<source src="nasheed.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+
+const weddingDate =
+new Date("June 20, 2026 20:00:00").getTime();
+
+setInterval(()=>{
+
+const now = new Date().getTime();
+
+const distance =
+weddingDate - now;
+
+document.getElementById("days").innerHTML =
+Math.floor(distance/(1000*60*60*24));
+
+document.getElementById("hours").innerHTML =
+Math.floor((distance%(1000*60*60*24))
+/(1000*60*60));
+
+document.getElementById("minutes").innerHTML =
+Math.floor((distance%(1000*60*60))
+/(1000*60));
+
+document.getElementById("seconds").innerHTML =
+Math.floor((distance%(1000*60))
+/1000);
+
+},1000);
+
+function toggleMusic(){
+
+let audio =
+document.getElementById("audio");
+
+if(audio.paused){
+audio.play();
+}else{
+audio.pause();
+}
+
+}
+
+for(let i=0;i<30;i++){
+
+let petal =
+document.createElement("div");
+
+petal.classList.add("petal");
+
+petal.innerHTML="🌹";
+
+petal.style.left =
+Math.random()*100+"vw";
+
+petal.style.animationDuration =
+5 + Math.random()*8 +"s";
+
+document.body.appendChild(petal);
+
+}
+
+</script>
+
+</body>
+</html>
