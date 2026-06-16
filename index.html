@@ -138,7 +138,7 @@
         .btn-calendar { background-color: transparent; color: #2c3a2e; border: 2px solid #2c3a2e; }
         .btn-calendar:hover { background-color: #2c3a2e; color: white; transform: translateY(-3px); }
 
-        /* 🔊 زر كتم وتشغيل الأنشودة الثابت في زاوية الشاشة */
+        /* 🔊 زر التحكم بالصوت */
         .music-control {
             position: fixed; bottom: 20px; left: 20px;
             background: #ffffff; border: 2px solid #d4af37;
@@ -147,6 +147,11 @@
             font-size: 1.5rem; cursor: pointer; z-index: 1000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             animation: pulse-gold 2s infinite;
+        }
+
+        /* إخفاء مشغل يوتيوب تماماً عشان يشتغل كصوت في الخلفية */
+        #youtubePlayer {
+            position: absolute; width: 0; height: 0; border: 0; pointer-events: none;
         }
 
         @keyframes fall {
@@ -161,10 +166,7 @@
 </head>
 <body>
 
-    <!-- 🎵 أنشودة الفرح (رابط مباشر لصوت نقي بالدفوف) -->
-    <!-- يمكنك استبدال الرابط بـ كود أي أنشودة بصيغة mp3 في المستقبل -->
-    <audio id="weddingNasheed" loop src="https://download.quran.com.uk/nasheeds/afrah_nasheed_sample.mp3"></audio>
-
+    <!-- 🌸 حاوية الورد المتساقط -->
     <div class="rose-container" id="roseContainer"></div>
 
     <!-- ✉️ شاشة الظرف الملكي المغلق -->
@@ -213,36 +215,61 @@
         <div style="margin-top: 25px; font-size: 0.95rem; color: #d4af37; font-weight: bold;">ودامت دياركم عامرة بالأفراح والكرم ✨</div>
     </div>
 
-    <!-- 🔊 زر التحكم بالصوت (يظهر بعد الفتح في أسفل اليسار) -->
+    <!-- 🔊 زر التحكم بالصوت البديل -->
     <div class="music-control" id="musicBtn" style="display:none;" onclick="toggleNasheed()">🔊</div>
 
+    <!-- 📺 مشغل يوتيوب السري والذكي للخلفية -->
+    <div id="youtubePlayer"></div>
+
     <script>
-        // دالة فتح الظرف وتشغيل أنشودة الفرح
+        // إعداد مشغل يوتيوب برمجياً
+        var player;
+        // تحميل مكتبة يوتيوب الرسمية
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                height: '0',
+                width: '0',
+                videoId: 'uS3X4yPkW-k', // كود أنشودة أفراح مميزة جداً بالدفوف من يوتيوب
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': 'uS3X4yPkW-k' // تكرار تلقائي للأنشودة
+                }
+            });
+        }
+
+        // دالة فتح الظرف وتشغيل أنشودة يوتيوب
         function openEnvelope() {
             document.getElementById('envelopeScreen').classList.add('open');
             document.body.classList.add('loaded');
             
-            const nasheed = document.getElementById('weddingNasheed');
-            // تشغيل مدعوم للتوافق مع آيفون وأندرويد
-            nasheed.play().then(() => {
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
                 document.getElementById('musicBtn').style.display = 'flex';
-            }).catch(error => {
-                // في حال قيام المتصفح بحظر الصوت، يظهر الزر ليتيح للضيف تشغيله يدوياً
-                document.getElementById('musicBtn').style.display = 'flex';
-                document.getElementById('musicBtn').innerText = '🔇';
-            });
+            }
         }
 
-        // كتم وتشغيل الأنشودة
+        // كتم وتشغيل الأنشودة عبر زرار التحكم
+        var isMuted = false;
         function toggleNasheed() {
-            const nasheed = document.getElementById('weddingNasheed');
             const btn = document.getElementById('musicBtn');
-            if (nasheed.paused) {
-                nasheed.play();
-                btn.innerText = '🔊';
-            } else {
-                nasheed.pause();
-                btn.innerText = '🔇';
+            if (player) {
+                if (isMuted) {
+                    player.unMute();
+                    player.playVideo();
+                    btn.innerText = '🔊';
+                    isMuted = false;
+                } else {
+                    player.mute();
+                    btn.innerText = '🔇';
+                    isMuted = true;
+                }
             }
         }
 
@@ -263,7 +290,7 @@
         }
         setInterval(createFlower, 300);
 
-        // سكريبت العداد التنازلي التلقائي لـ 20 يونيو 2026
+        // سكريبت العداد التنازلي لـ 20 يونيو 2026
         const weddingDate = new Date("June 20, 2026 20:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
