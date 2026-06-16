@@ -1,126 +1,36 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف محمود ولقاء</title>
-    <style>
-        /* 1. إعدادات الصفحة العامة */
-        body {
-            margin: 0; padding: 0;
-            background-color: #f7f4ef; /* لون عاجي هادي ومريح للعين */
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* لمنع السكرول والظرف مقفول */
-        }
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: #dcdcdc; /* لون الظرف */
+}
 
-        /* 2. شاشة الغلاف (الظرف الملكي المغلق) */
-        .envelope-wrapper {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #1c2e24; /* الأخضر الملكي الداكن */
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: 9999;
-            cursor: pointer;
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); /* حركة الفتح الناعمة */
-        }
+.card {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 280px;
+  height: 180px;
+  background: white;
+  transition: transform 1s ease-in-out;
+}
 
-        /* التأثير السحري عند الفتح */
-        .envelope-wrapper.open {
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(1.1) translateY(-100%);
-        }
+/* حركة خروج الكارت عند تمرير الفأرة أو تحميل الصفحة */
+.envelope:hover .card {
+  transform: translateY(-150px);
+}
 
-        /* الختم الدائري الفخم */
-        .envelope-seal {
-            width: 90px; height: 90px;
-            background-color: #d4af37; /* اللون الذهبي */
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 2rem; color: #fff;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
-        }
+.flap {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 100px solid #c0c0c0; /* غطاء الظرف */
+  transition: transform 0.5s;
+}
 
-        .envelope-wrapper:hover .envelope-seal {
-            transform: scale(1.08); /* حركة تفاعلية خفيفة عند لمس الظرف */
-        }
-
-        .envelope-text {
-            color: #f7f4ef;
-            font-size: 1.6rem; margin-top: 25px;
-            letter-spacing: 1px;
-        }
-
-        .envelope-sub {
-            color: #d4af37; font-size: 0.9rem; margin-top: 12px;
-            opacity: 0.8;
-        }
-
-
-        /* 3. حاوية كارت الدعوة (بعد الفتح) */
-        .card-container {
-            width: 100%; display: flex; justify-content: center; padding: 20px 0;
-        }
-
-        .card {
-            background-color: #ffffff;
-            max-width: 450px; width: 85%;
-            padding: 50px 35px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            text-align: center;
-            position: relative;
-            box-sizing: border-box;
-            
-            /* تأثير ظهور الكارت بنعومة بعد فتح الظرف */
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* تفعيل ظهور الكارت والسماح بالسكرول بعد الفتح */
-        body.loaded .card {
-            opacity: 1; transform: translateY(0);
-        }
-        body.loaded {
-            overflow-y: auto;
-        }
-
-        /* الإطار الهندسي الداخلي البسيط (Greenvelope Signature) */
-        .card::before {
-            content: ''; position: absolute;
-            top: 20px; bottom: 20px; left: 20px; right: 20px;
-            border: 1px solid #d4af37;
-            pointer-events: none; opacity: 0.6;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ✉️ غلاف الظرف -->
-    <div class="envelope-wrapper" id="envelopeScreen" onclick="openEnvelope()">
-        <div class="envelope-seal">✉</div>
-        <div class="envelope-text">محمود & لقاء</div>
-        <div class="envelope-sub">اضغط هنا لفتح الدعوة الملكية</div>
-    </div>
-
-    <!-- 📜 كارت الدعوة (مستعد لاستقبال البيانات) -->
-    <div class="card-container">
-        <div class="card">
-            <!-- هنا هتنزل كل البيانات المرتبة والجميلة اللي هنختارها سوا في الخطوة الجاية -->
-            <p style="color: #888; font-style: italic;">[ مكان محتوى الكارت والبيانات ]</p>
-        </div>
-    </div>
-
-    <script>
-        // دالة تفعيل حركة الفتح والسماح بظهور الكارت
-        function openEnvelope() {
-            document.getElementById('envelopeScreen').classList.add('open');
-            document.body.classList.add('loaded');
-        }
-    </script>
-</body>
-</html>
+.envelope:hover .flap {
+  transform: rotateX(180deg);
+}
