@@ -2,37 +2,62 @@
 <html lang="ar" dir="rtl">
 <head>
     <style>
-        /* شاشة البداية (الظرف) */
-        #opening-screen {
-            position: fixed; inset: 0; background: #fdfaf7;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 1000; transition: opacity 1s ease-out; cursor: pointer;
+        body { margin: 0; background: #fdfaf7; font-family: 'Amiri', serif; overflow: hidden; }
+        
+        /* شاشة الظرف */
+        #envelope-container {
+            position: fixed; inset: 0; z-index: 10;
+            display: flex; justify-content: center; align-items: center;
+            background: #d4af37; transition: 1s ease-in-out;
+            cursor: pointer;
         }
 
-        /* تأثير الكتابة على الظرف */
-        .envelope-text { font-family: 'Amiri', serif; font-size: 2rem; color: #8e7a82; border-bottom: 2px solid #d4c1c1; padding-bottom: 10px; }
+        /* ورقة الدعوة اللي بتطلع */
+        #invitation-card {
+            position: absolute; width: 350px; height: 500px;
+            background: white; border: 2px solid #e0d0d0;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; transform: translateY(100px); transition: 1s;
+        }
 
-        /* الأنيميشن لما يختفي */
-        .fade-out { opacity: 0; pointer-events: none; }
+        /* تأثير الورد المتساقط */
+        .flower { position: absolute; top: -50px; animation: fall linear infinite; font-size: 20px; }
+        @keyframes fall { to { transform: translateY(100vh); } }
     </style>
 </head>
 <body>
 
-    <!-- شاشة الظرف -->
-    <div id="opening-screen" onclick="startExperience()">
-        <div class="envelope-text">اضغط هنا لفتح دعوة زفاف محمود ولقاء</div>
+    <!-- الظرف -->
+    <div id="envelope-container" onclick="openWedding()">
+        <h1 style="color: white; font-size: 3rem;">✉️</h1>
     </div>
 
-    <!-- هنا مكان كود الدعوة (الذي صممناه سابقاً) -->
+    <!-- الدعوة -->
+    <div id="invitation-card">
+        <h1>محمود & لقاء</h1>
+        <p>20 يونيو 2026 - قاعة الماسة</p>
+    </div>
 
     <script>
-        function startExperience() {
-            const screen = document.getElementById('opening-screen');
-            screen.classList.add('fade-out');
+        function openWedding() {
+            // اخفاء الظرف
+            document.getElementById('envelope-container').style.transform = 'scale(0)';
             
-            // تشغيل الموسيقى والأنشودة
-            const audio = new Audio('your-nasheed.mp3');
-            audio.play();
+            // ظهور الدعوة
+            const card = document.getElementById('invitation-card');
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+
+            // بدء تساقط الورد
+            setInterval(() => {
+                const f = document.createElement('div');
+                f.innerHTML = '🌸';
+                f.className = 'flower';
+                f.style.left = Math.random() * 100 + 'vw';
+                f.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(f);
+                setTimeout(() => f.remove(), 5000);
+            }, 300);
         }
     </script>
 </body>
