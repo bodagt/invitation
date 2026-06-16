@@ -17,7 +17,19 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* يمنع السكرول أثناء قفل الشاشة */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 🌸 حاوية الورد المتساقط */
+        .rose-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* عشان ما يمنعش الضغط على الزراير */
+            z-index: 999;
         }
 
         /* 🌟 شاشة الغلاف الترحيبية */
@@ -27,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1e272e, #2c3e50); /* خلفية داكنة ملكية لشعور الفخامة */
+            background: linear-gradient(135deg, #2c3a2e, #1a241c); /* أخضر زيتي ملكي فخم يتماشى مع الورد */
             color: #f1f2f6;
             display: flex;
             flex-direction: column;
@@ -35,13 +47,12 @@
             align-items: center;
             z-index: 9999;
             cursor: pointer;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 1s ease, visibility 1s ease;
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        /* تأثير اختفاء الشاشة */
         .splash-overlay.hidden {
             opacity: 0;
             visibility: hidden;
@@ -50,10 +61,10 @@
 
         .splash-title {
             font-family: 'Reem Kufi', serif;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: #d4af37;
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .splash-subtitle {
@@ -66,46 +77,48 @@
             font-size: 1rem;
             color: #d4af37;
             border: 1px solid #d4af37;
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 30px;
+            background-color: rgba(212, 175, 55, 0.1);
             animation: blink 1.8s infinite;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         /* 📜 كارت الدعوة الأصلي */
         .card {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.95); /* شفافية بسيطة عشان الورد يبان وراه */
             max-width: 500px;
             width: 90%;
             margin: 20px;
             padding: 40px 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             text-align: center;
             border: 2px solid #e8dfd8;
             position: relative;
+            z-index: 10;
             opacity: 0;
-            transform: scale(0.9);
-            transition: all 1s ease 0.4s; /* يبدأ يظهر بعد ما الـ splash تختفي */
+            transform: scale(0.8) translateY(30px);
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* حركة ارتداد ناعمة عند الظهور */
         }
 
-        /* يظهر الكارت بعد الضغط */
         body.loaded .card {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
         body.loaded {
-            overflow: auto; /* يرجع السكرول طبيعي بعد الفتح */
+            overflow: auto;
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: 10px; bottom: 10px; left: 10px; right: 10px;
+            top: 12px; bottom: 12px; left: 12px; right: 12px;
             border: 1px solid #d4af37;
             border-radius: 15px;
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .header-title {
@@ -123,7 +136,7 @@
 
         .names {
             font-family: 'Reem Kufi', serif;
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: #2c3e50;
             margin: 20px 0;
             font-weight: bold;
@@ -131,7 +144,7 @@
 
         .heart {
             color: #e74c3c;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             animation: pulse 1.5s infinite;
             display: inline-block;
         }
@@ -140,67 +153,90 @@
             font-size: 1.1rem;
             line-height: 1.8;
             margin: 30px 0;
-            color: #555;
+            color: #4a4a4a;
         }
 
         .info-box {
             background-color: #fdfbf7;
             border: 1px dashed #d4af37;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 25px 0;
         }
 
         .info-item {
-            margin: 10px 0;
+            margin: 12px 0;
             font-weight: bold;
+            font-size: 1.05rem;
         }
 
         .btn-location {
             display: inline-block;
             background-color: #d4af37;
             color: white;
-            padding: 12px 30px;
+            padding: 14px 35px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 35px;
             font-weight: bold;
-            transition: background 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
         }
 
         .btn-location:hover {
             background-color: #b8952e;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 25px rgba(212, 175, 55, 0.5);
         }
 
         .footer-text {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #999;
+            margin-top: 35px;
+            font-size: 0.95rem;
+            color: #777;
         }
 
-        /* 🔄 الأنميشن */
+        /* 🌸 أنميشن الورد المتساقط */
+        @keyframes fall {
+            0% {
+                transform: translateY(-5vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.25); }
             100% { transform: scale(1); }
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.98); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🌟 شاشة الغلاف (تختفي عند الضغط) -->
+    <!-- حاوية تأثير الورد -->
+    <div class="rose-container" id="roseContainer"></div>
+
+    <!-- 🌟 شاشة الغلاف -->
     <div class="splash-overlay" id="splashScreen" onclick="openInvitation()">
         <div class="splash-title">دعوة زفاف غالية ✨</div>
         <div class="splash-subtitle">الجمال يتجلى.. والفرحة تكتمل بكم</div>
         <div class="tap-instruction">إضغط هنا لفتح الدعوة ✉</div>
     </div>
 
-    <!-- 📜 كارت الدعوة (يظهر بعد الضغط) -->
+    <!-- 📜 كارت الدعوة -->
     <div class="card">
         <div class="header-title">دعوة زفاف</div>
         <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
@@ -228,14 +264,47 @@
         </div>
     </div>
 
-    <!-- ⚙ كود الجافا سكريبت السحري -->
+    <!-- ⚙ السكريبت الذكي لإنشاء الورد وحركة الفتح -->
     <script>
+        // دالة فتح الدعوة
         function openInvitation() {
-            // إضافة كلاس لإخفاء شاشة الغلاف بـ تأثير Fade out
             document.getElementById('splashScreen').classList.add('hidden');
-            // إضافة كلاس للـ body لتفعيل أنميشن ظهور كارت الفرح
             document.body.classList.add('loaded');
         }
+
+        // صناعة تأثير تساقط الورد برمجياً بشكل عشوائي ومميز
+        const container = document.getElementById('roseContainer');
+        const flowerTypes = ['🌸', '🌹', '✨', '🍃']; // تشكيلة ورد وورق شجر ولمعان
+
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.innerText = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
+            flower.style.position = 'absolute';
+            flower.style.top = '-20px';
+            
+            // توزيع عشوائي على عرض الشاشة
+            flower.style.left = Math.random() * 100 + 'vw';
+            
+            // أحجام عشوائية للورد عشان يبان طبيعي (قريب وبعيد)
+            flower.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            // سرعة سقوط عشوائية (بين 5 لـ 10 ثواني)
+            const duration = Math.random() * 5 + 5;
+            flower.style.animation = `fall ${duration}s linear infinite`;
+            
+            // درجة شفافية عشوائية
+            flower.style.opacity = Math.random() * 0.7 + 0.3;
+
+            container.appendChild(flower);
+
+            // حذف الوردة بعد ما تنزل تحت خالص عشان السايت ميبقاش ثقيل
+            setTimeout(() => {
+                flower.remove();
+            }, duration * 1000);
+        }
+
+        // إنتاج وردة جديدة كل 300 مللي ثانية
+        setInterval(createFlower, 300);
     </script>
 
 </body>
