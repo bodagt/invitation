@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #fdfaf7; font-family: 'Amiri', serif; overflow: hidden; }
-        
-        /* شاشة الظرف */
-        #envelope-container {
-            position: fixed; inset: 0; z-index: 10;
-            display: flex; justify-content: center; align-items: center;
-            background: #d4af37; transition: 1s ease-in-out;
-            cursor: pointer;
+        body { margin: 0; padding: 0; background-color: #f7f2ef; font-family: 'Amiri', serif; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
+
+        /* الظرف (مركز الشاشة بتصميم أنيق) */
+        #envelope-wrapper {
+            position: absolute; z-index: 20; transition: all 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            text-align: center; cursor: pointer;
         }
 
-        /* ورقة الدعوة اللي بتطلع */
+        /* الكارت (الدعوة بعد الفتح) */
         #invitation-card {
-            position: absolute; width: 350px; height: 500px;
-            background: white; border: 2px solid #e0d0d0;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; transform: translateY(100px); transition: 1s;
+            width: 380px; padding: 50px; background: #ffffff;
+            border: 1px solid #d4c1c1; border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            opacity: 0; transition: opacity 1.5s ease; text-align: center;
         }
 
-        /* تأثير الورد المتساقط */
-        .flower { position: absolute; top: -50px; animation: fall linear infinite; font-size: 20px; }
-        @keyframes fall { to { transform: translateY(100vh); } }
+        .flower { position: absolute; animation: fall linear infinite; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
     <!-- الظرف -->
-    <div id="envelope-container" onclick="openWedding()">
-        <h1 style="color: white; font-size: 3rem;">✉️</h1>
+    <div id="envelope-wrapper" onclick="reveal()">
+        <div style="font-size: 5rem;">✉️</div>
+        <p style="color: #8e7a82; font-size: 1.2rem;">اضغط لفتح الدعوة</p>
     </div>
 
-    <!-- الدعوة -->
+    <!-- الكارت -->
     <div id="invitation-card">
-        <h1>محمود & لقاء</h1>
-        <p>20 يونيو 2026 - قاعة الماسة</p>
+        <h2 style="color: #5c4b51;">محمود & لقاء</h2>
+        <p style="color: #8e7a82; line-height: 2;">يتشرف العروسان بدعوتكم لمشاركتهم فرحة العمر</p>
+        <hr style="width: 50%; border: 0; border-top: 1px solid #d4c1c1;">
+        <p>20 يونيو 2026 | 8:00 مساءً</p>
+        <p>قاعة الماسة - قلين</p>
     </div>
 
     <script>
-        function openWedding() {
-            // اخفاء الظرف
-            document.getElementById('envelope-container').style.transform = 'scale(0)';
-            
-            // ظهور الدعوة
-            const card = document.getElementById('invitation-card');
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
+        function reveal() {
+            document.getElementById('envelope-wrapper').style.opacity = '0';
+            document.getElementById('envelope-wrapper').style.transform = 'scale(2) rotate(10deg)';
+            setTimeout(() => {
+                document.getElementById('invitation-card').style.opacity = '1';
+                startFlowers();
+            }, 1000);
+        }
 
-            // بدء تساقط الورد
+        function startFlowers() {
             setInterval(() => {
                 const f = document.createElement('div');
-                f.innerHTML = '🌸';
                 f.className = 'flower';
+                f.innerHTML = '🌸';
                 f.style.left = Math.random() * 100 + 'vw';
-                f.style.animationDuration = Math.random() * 3 + 2 + 's';
+                f.style.fontSize = Math.random() * 20 + 15 + 'px';
+                f.style.animationDuration = Math.random() * 5 + 5 + 's';
                 document.body.appendChild(f);
-                setTimeout(() => f.remove(), 5000);
-            }, 300);
+                setTimeout(() => f.remove(), 8000);
+            }, 400);
         }
     </script>
 </body>
