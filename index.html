@@ -21,25 +21,19 @@
             position: relative;
         }
 
-        /* 🌸 حاوية الورد المتساقط */
+        /* 🌸 حاوية الورد */
         .rose-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* عشان ما يمنعش الضغط على الزراير */
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
             z-index: 999;
         }
 
         /* 🌟 شاشة الغلاف الترحيبية */
         .splash-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2c3a2e, #1a241c); /* أخضر زيتي ملكي فخم يتماشى مع الورد */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #2c3a2e, #1a241c);
             color: #f1f2f6;
             display: flex;
             flex-direction: column;
@@ -54,9 +48,7 @@
         }
 
         .splash-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            opacity: 0; visibility: hidden; pointer-events: none;
         }
 
         .splash-title {
@@ -64,13 +56,6 @@
             font-size: 2.3rem;
             color: #d4af37;
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .splash-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
         }
 
         .tap-instruction {
@@ -79,18 +64,16 @@
             border: 1px solid #d4af37;
             padding: 12px 30px;
             border-radius: 30px;
-            background-color: rgba(212, 175, 55, 0.1);
             animation: blink 1.8s infinite;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
-        /* 📜 كارت الدعوة الأصلي */
+        /* 📜 كارت الدعوة */
         .card {
-            background-color: rgba(255, 255, 255, 0.95); /* شفافية بسيطة عشان الورد يبان وراه */
+            background-color: rgba(255, 255, 255, 0.95);
             max-width: 500px;
             width: 90%;
             margin: 20px;
-            padding: 40px 20px;
+            padding: 30px 20px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             text-align: center;
@@ -99,134 +82,91 @@
             z-index: 10;
             opacity: 0;
             transform: scale(0.8) translateY(30px);
-            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* حركة ارتداد ناعمة عند الظهور */
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         body.loaded .card {
-            opacity: 1;
-            transform: scale(1) translateY(0);
+            opacity: 1; transform: scale(1) translateY(0);
         }
 
-        body.loaded {
-            overflow: auto;
-        }
+        body.loaded { overflow: auto; }
 
         .card::before {
-            content: '';
-            position: absolute;
+            content: ''; position: absolute;
             top: 12px; bottom: 12px; left: 12px; right: 12px;
-            border: 1px solid #d4af37;
-            border-radius: 15px;
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        .header-title {
-            font-family: 'Reem Kufi', serif;
-            color: #d4af37;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-
-        .bismillah {
-            font-size: 1.1rem;
-            color: #8c8c8c;
-            margin-bottom: 30px;
+            border: 1px solid #d4af37; border-radius: 15px;
+            pointer-events: none; opacity: 0.6;
         }
 
         .names {
             font-family: 'Reem Kufi', serif;
-            font-size: 2.6rem;
-            color: #2c3e50;
-            margin: 20px 0;
-            font-weight: bold;
+            font-size: 2.6rem; color: #2c3e50; margin: 15px 0; font-weight: bold;
         }
 
-        .heart {
-            color: #e74c3c;
-            font-size: 1.6rem;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-        }
-
-        .details {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin: 30px 0;
-            color: #4a4a4a;
-        }
+        .heart { color: #e74c3c; font-size: 1.6rem; animation: pulse 1.5s infinite; display: inline-block; }
 
         .info-box {
-            background-color: #fdfbf7;
-            border: 1px dashed #d4af37;
-            padding: 18px;
-            border-radius: 12px;
-            margin: 25px 0;
+            background-color: #fdfbf7; border: 1px dashed #d4af37;
+            padding: 15px; border-radius: 12px; margin: 20px 0;
         }
 
-        .info-item {
-            margin: 12px 0;
-            font-weight: bold;
-            font-size: 1.05rem;
+        .info-item { margin: 8px 0; font-weight: bold; }
+
+        /* ⏱ استايل العداد التنازلي البهيج */
+        .countdown-title {
+            font-weight: bold; color: #d4af37; margin-top: 20px; font-size: 1.1rem;
+        }
+        
+        .countdown-container {
+            display: flex; justify-content: center; gap: 10px; margin: 15px 0; direction: ltr;
+        }
+
+        .countdown-box {
+            background: #2c3a2e; color: #fff; padding: 8px 12px;
+            border-radius: 8px; min-width: 55px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .countdown-number { font-size: 1.4rem; font-weight: bold; color: #d4af37; }
+        .countdown-label { font-size: 0.75rem; opacity: 0.8; font-family: 'Cairo', sans-serif; }
+
+        /* الأزرار */
+        .buttons-wrapper {
+            display: flex; flex-direction: column; gap: 12px; margin-top: 25px; align-items: center;
+        }
+
+        .btn {
+            display: inline-block; width: 80%; padding: 12px 0;
+            text-decoration: none; border-radius: 35px; font-weight: bold;
+            transition: all 0.3s ease; font-size: 0.95rem;
         }
 
         .btn-location {
-            display: inline-block;
-            background-color: #d4af37;
-            color: white;
-            padding: 14px 35px;
-            text-decoration: none;
-            border-radius: 35px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            background-color: #d4af37; color: white; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-location:hover {
-            background-color: #b8952e;
-            transform: translateY(-2px);
-            box-shadow: 0 7px 25px rgba(212, 175, 55, 0.5);
+        .btn-location:hover { background-color: #b8952e; transform: translateY(-2px); }
+
+        .btn-calendar {
+            background-color: #fff; color: #2c3a2e; border: 2px solid #2c3a2e;
         }
 
-        .footer-text {
-            margin-top: 35px;
-            font-size: 0.95rem;
-            color: #777;
-        }
+        .btn-calendar:hover { background-color: #2c3a2e; color: white; transform: translateY(-2px); }
 
-        /* 🌸 أنميشن الورد المتساقط */
+        .footer-text { margin-top: 25px; font-size: 0.9rem; color: #777; }
+
+        /* الأنميشن */
         @keyframes fall {
-            0% {
-                transform: translateY(-5vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-5vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.25); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.98); }
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        @keyframes blink { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.98); opacity: 0.6; } }
     </style>
 </head>
 <body>
 
-    <!-- حاوية تأثير الورد -->
     <div class="rose-container" id="roseContainer"></div>
 
     <!-- 🌟 شاشة الغلاف -->
@@ -238,74 +178,86 @@
 
     <!-- 📜 كارت الدعوة -->
     <div class="card">
-        <div class="header-title">دعوة زفاف</div>
-        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div style="color: #d4af37; font-family: 'Reem Kufi', serif; font-size: 1.8rem;">دعوة زفاف</div>
+        <div style="font-size: 1rem; color: #8c8c8c; margin-bottom: 20px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
         
-        <p>وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+        <p style="font-size: 0.95rem; padding: 0 10px;">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
 
         <div class="names">
             محمود <span class="heart">❤</span> لقاء
         </div>
 
-        <div class="details">
-            يسعدنا ويشرفنا دعوتكم لحضور حفل زفافنا، وتكتمل فرحتنا بوجودكم ومشاركتكم لنا أجمل لحظات العمر.
-        </div>
+        <p style="color:#555; font-size:1rem; line-height:1.6;">يسعدنا ويشرفنا دعوتكم لحضور حفل زفافنا، وتكتمل فرحتنا بوجودكم ومشاركتكم لنا أجمل لحظات العمر.</p>
 
         <div class="info-box">
             <div class="info-item">📅 التاريخ: السبت، 20 يونيو 2026</div>
-            <div class="info-item">⏰ 8 الموعد: مساءً</div>
+            <div class="info-item">⏰ الموعد: الساعة 8:00 مساءً</div>
             <div class="info-item">📍 المكان: قاعة الماسة - قلين</div>
         </div>
 
-        <a href="https://maps.app.goo.gl/kgm4XxaHg1gHw7ZH8" target="_blank" class="btn-location">📍 موقع القاعة على الخريطة (GPS)</a>
-
-        <div class="footer-text">
-            العاقبة لديكم بالمسرات دائماً وأبداً ✨
+        <!-- ⏱ العداد التنازلي -->
+        <div class="countdown-title">⏳ متبقي على الفرحة:</div>
+        <div class="countdown-container">
+            <div class="countdown-box"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">ثانية</div></div>
+            <div class="countdown-box"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">دقيقة</div></div>
+            <div class="countdown-box"><div class="countdown-number" id="hours">00</div><div class="countdown-label">ساعة</div></div>
+            <div class="countdown-box"><div class="countdown-number" id="days">00</div><div class="countdown-label">يوم</div></div>
         </div>
+
+        <!-- الأزرار التفاعلية -->
+        <div class="buttons-wrapper">
+            <a href="https://maps.app.goo.gl/kgm4XxaHg1gHw7ZH8" target="_blank" class="btn btn-location">📍 موقع القاعة على الخريطة (GPS)</a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=زفاف+محمود+ولقاء+💍&dates=20260620T170000Z/20260620T220000Z&details=ننتظركم+لتشاركونا+فرحتنا&location=قاعة+الماسة+-+قلين" target="_blank" class="btn btn-calendar">📅 حفظ الموعد في تقويمي</a>
+        </div>
+
+        <div class="footer-text">العاقبة لديكم بالمسرات دائماً وأبداً ✨</div>
     </div>
 
-    <!-- ⚙ السكريبت الذكي لإنشاء الورد وحركة الفتح -->
     <script>
-        // دالة فتح الدعوة
         function openInvitation() {
             document.getElementById('splashScreen').classList.add('hidden');
             document.body.classList.add('loaded');
         }
 
-        // صناعة تأثير تساقط الورد برمجياً بشكل عشوائي ومميز
+        // سكريبت الورد المتساقط
         const container = document.getElementById('roseContainer');
-        const flowerTypes = ['🌸', '🌹', '✨', '🍃']; // تشكيلة ورد وورق شجر ولمعان
-
+        const flowerTypes = ['🌸', '🌹', '✨', '🍃'];
         function createFlower() {
             const flower = document.createElement('div');
             flower.innerText = flowerTypes[Math.floor(Math.random() * flowerTypes.length)];
-            flower.style.position = 'absolute';
-            flower.style.top = '-20px';
-            
-            // توزيع عشوائي على عرض الشاشة
+            flower.style.position = 'absolute'; flower.style.top = '-20px';
             flower.style.left = Math.random() * 100 + 'vw';
-            
-            // أحجام عشوائية للورد عشان يبان طبيعي (قريب وبعيد)
             flower.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            
-            // سرعة سقوط عشوائية (بين 5 لـ 10 ثواني)
             const duration = Math.random() * 5 + 5;
             flower.style.animation = `fall ${duration}s linear infinite`;
-            
-            // درجة شفافية عشوائية
             flower.style.opacity = Math.random() * 0.7 + 0.3;
-
             container.appendChild(flower);
-
-            // حذف الوردة بعد ما تنزل تحت خالص عشان السايت ميبقاش ثقيل
-            setTimeout(() => {
-                flower.remove();
-            }, duration * 1000);
+            setTimeout(() => { flower.remove(); }, duration * 1000);
         }
+        setInterval(createFlower, 350);
 
-        // إنتاج وردة جديدة كل 300 مللي ثانية
-        setInterval(createFlower, 300);
+        // سكريبت العداد التنازلي التلقائي لـ يوم 20 يونيو 2026 الساعة 8 مساءً
+        const weddingDate = new Date("June 20, 2026 20:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown-container").innerHTML = "<b style='color:#d4af37; font-size:1.2rem;'>💖 الفرح بدأ.. منورين جميعاً 💖</b>";
+            }
+        }, 1000);
     </script>
-
 </body>
 </html>
